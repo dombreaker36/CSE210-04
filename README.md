@@ -8,3 +8,10 @@
 # If the player touches a rock they lose a point.
 # Gems and rocks are removed when the player touches them.
 # The game continues until the player closes the window.
+
+
+Gunnar - Make them fall (Probably fix the spawning and when they fall off the screen)
+
+Alvaro - Add or subtract points (display the points)
+
+Martin - Make them disappear when touched

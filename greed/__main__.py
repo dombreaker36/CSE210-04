@@ -14,7 +14,7 @@ from game.shared.color import Color
 from game.shared.point import Point
 
 
-FRAME_RATE = 12
+FRAME_RATE = 24
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
@@ -25,9 +25,9 @@ else:
 COLS = int(MAX_X / CELL_SIZE)
 ROWS = int(MAX_Y / CELL_SIZE)
 CAPTION = "Greed"
-DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
+# DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = ROWS
+DEFAULT_ARTIFACTS = ROWS     # default is 40 if cell size is 15
 
 
 def main():
@@ -45,7 +45,7 @@ def main():
     
     # create the robot
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = int(MAX_Y - CELL_SIZE)
     position = Point(x, y)
 
     robot = Actor()
@@ -56,16 +56,14 @@ def main():
     cast.add_actor("robots", robot)
     
     # create the artifacts
-    with open(DATA_PATH) as file:
-        data = file.read()
-        messages = data.splitlines()
+    messages = ["*", "O"]
 
     for n in range(DEFAULT_ARTIFACTS):
-        text = chr(random.randint(33, 126))
-        message = messages[n]
+        text = random.randint(0, 1)
+        message = messages[text]
 
         x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 1)
+        y = 1
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
@@ -75,11 +73,11 @@ def main():
         color = Color(r, g, b)
         
         artifact = Artifact()
-        artifact.set_text(text)
+        artifact.set_text(message)
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
-        artifact.set_message(message)
+        artifact.set_message(f"Score: {45}") #add/subtract points
         cast.add_actor("artifacts", artifact)
     
     # start the game
