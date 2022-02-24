@@ -74,8 +74,8 @@ class Actor:
             max_y (int): The maximum y value.
         """
         if is_gem_or_rock:
-            x = (self._position.get_x())
-            y = (self._position.get_y() + 5 ) #one third of cell size
+            x = (self._position.get_x()) % max_x
+            y = (self._position.get_y() + 5 ) % max_y #one third of cell size
         else:
             x = (self._position.get_x() + self._velocity.get_x()) % max_x
             y = (self._position.get_y() + self._velocity.get_y()) % max_y

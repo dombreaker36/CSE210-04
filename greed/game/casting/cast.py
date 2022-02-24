@@ -74,8 +74,10 @@ class Cast:
         if group in self._actors:
             self._actors[group].remove(actor)
 
-    def move_artifacts(self):
-        pass
-        # x = (self._position.get_x() + self._velocity.get_x()) % max_x
-        # y = (self._position.get_y() + self._velocity.get_y()) % max_y
-        # self._position = Point(x, y)
+
+# This below Done in the director file #
+    # def move_artifacts(self):
+    #     pass
+    #     # x = (self._position.get_x() + self._velocity.get_x()) % max_x
+    #     # y = (self._position.get_y() + self._velocity.get_y()) % max_y
+    #     # self._position = Point(x, y)

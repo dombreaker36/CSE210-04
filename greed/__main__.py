@@ -56,35 +56,37 @@ def main():
     cast.add_actor("robots", robot)
     
     # create the artifacts
-    messages = ["*", "O"]
+    def create_artifacts(how_many=DEFAULT_ARTIFACTS):
+        messages = ["*", "O"]
 
-    for _ in range(DEFAULT_ARTIFACTS):
-        text = random.randint(0, 1)
-        message = messages[text]
+        for _ in range(how_many):
+            text = random.randint(0, 1)
+            message = messages[text]
 
-        x = random.randint(1, COLS - 1)
-        y = 1
-        position = Point(x, y)
-        position = position.scale(CELL_SIZE)
+            x = random.randint(1, COLS - 1)
+            y = 1
+            position = Point(x, y)
+            position = position.scale(CELL_SIZE)
 
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        color = Color(r, g, b)
-        
-        artifact = Artifact()
-        artifact.set_text(message)
-        artifact.set_font_size(FONT_SIZE)
-        artifact.set_color(color)
-        artifact.set_position(position)
-        artifact.set_message(f"Score: {45}") #add/subtract points
-        cast.add_actor("artifacts", artifact)
+            r = random.randint(0, 255)
+            g = random.randint(0, 255)
+            b = random.randint(0, 255)
+            color = Color(r, g, b)
+            
+            artifact = Artifact()
+            artifact.set_text(message)
+            artifact.set_font_size(FONT_SIZE)
+            artifact.set_color(color)
+            artifact.set_position(position)
+            artifact.set_message(f"Score: {45}") #add/subtract points
+            cast.add_actor("artifacts", artifact)
+    create_artifacts()
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
     director = Director(keyboard_service, video_service)
-    director.start_game(cast)
+    director.start_game(cast,create_artifacts)
 
 
 if __name__ == "__main__":

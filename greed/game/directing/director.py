@@ -1,3 +1,6 @@
+
+
+
 class Director:
     """A person who directs the game. 
     
@@ -18,7 +21,7 @@ class Director:
         self._keyboard_service = keyboard_service
         self._video_service = video_service
         
-    def start_game(self, cast):
+    def start_game(self, cast,create_artifacts,):
         """Starts the game using the given cast. Runs the main game loop.
 
         Args:
@@ -27,7 +30,7 @@ class Director:
         self._video_service.open_window()
         while self._video_service.is_window_open():
             self._get_inputs(cast)
-            self._do_updates(cast)
+            self._do_updates(cast,create_artifacts)
             self._do_outputs(cast)
         self._video_service.close_window()
 
@@ -41,7 +44,7 @@ class Director:
         velocity = self._keyboard_service.get_direction()
         robot.set_velocity(velocity)        
 
-    def _do_updates(self, cast):
+    def _do_updates(self, cast,create_artifacts):
         """Updates the robot's position and resolves any collisions with artifacts.
         
         Args:
@@ -50,17 +53,23 @@ class Director:
         banner = cast.get_first_actor("banners")
         robot = cast.get_first_actor("robots")
         artifacts = cast.get_actors("artifacts")
-
+        # if len(artifacts) < 40:
+        #     __temp_number = 40 - len(artifacts)     #This might work, but we won't know until we figure out how to delete the gems upon catching them.
+        #     create_artifacts(__temp_number)
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
         
         for artifact in artifacts:
-            artifact.move_next(max_x, max_y, is_gem_or_rock=True)
             if robot.get_position().equals(artifact.get_position()):
                 message = artifact.get_message()
-                banner.set_text(message)    
+                banner.set_text(message) 
+            # elif artifact.get_position().get_y() > max_y:
+            #     del artifacts[artifact]     #This did not work... hmmm, how to remove the gems and rocks?
+            else:
+                artifact.move_next(max_x, max_y, is_gem_or_rock=True)
+                
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
