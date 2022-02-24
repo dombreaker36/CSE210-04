@@ -58,7 +58,7 @@ def main():
     # create the artifacts
     messages = ["*", "O"]
 
-    for n in range(DEFAULT_ARTIFACTS):
+    for _ in range(DEFAULT_ARTIFACTS):
         text = random.randint(0, 1)
         message = messages[text]
 

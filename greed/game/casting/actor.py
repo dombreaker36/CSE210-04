@@ -46,6 +46,7 @@ class Actor:
         Returns:
             Point: The actor's position in 2d space.
         """
+        print(self._position)
         return self._position
     
     def get_text(self):
@@ -64,7 +65,7 @@ class Actor:
         """
         return self._velocity
     
-    def move_next(self, max_x, max_y):
+    def move_next(self, max_x, max_y, is_gem_or_rock=False):
         """Moves the actor to its next position according to its velocity. Will wrap the position 
         from one side of the screen to the other when it reaches the given maximum x and y values.
         
@@ -72,8 +73,12 @@ class Actor:
             max_x (int): The maximum x value.
             max_y (int): The maximum y value.
         """
-        x = (self._position.get_x() + self._velocity.get_x()) % max_x
-        y = (self._position.get_y() + self._velocity.get_y()) % max_y
+        if is_gem_or_rock:
+            x = (self._position.get_x())
+            y = (self._position.get_y() + 5 ) #one third of cell size
+        else:
+            x = (self._position.get_x() + self._velocity.get_x()) % max_x
+            y = (self._position.get_y() + self._velocity.get_y()) % max_y
         self._position = Point(x, y)
 
     def set_color(self, color):
