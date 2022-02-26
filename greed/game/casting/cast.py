@@ -7,10 +7,13 @@ class Cast:
     Attributes:
         _actors (dict): A dictionary of actors { key: group_name, value: a list of actors }
     """
-
+    
     def __init__(self):
         """Constructs a new Actor."""
         self._actors = {}
+        
+    def give_list_of_actors(self):
+        self._actors = self._actors
         
     def add_actor(self, group, actor):
         """Adds an actor to the given group.

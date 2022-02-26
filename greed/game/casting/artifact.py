@@ -1,7 +1,8 @@
 from game.casting.actor import Actor
+from game.casting.cast import Cast
 
 
-class Artifact(Actor):
+class Artifact(Actor, Cast):
     """
     An item of cultural or historical interest. 
     

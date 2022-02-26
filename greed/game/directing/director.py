@@ -20,6 +20,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._score = 0
         
     def start_game(self, cast,create_artifacts,):
         """Starts the game using the given cast. Runs the main game loop.
@@ -55,20 +56,24 @@ class Director:
         artifacts = cast.get_actors("artifacts")
         # if len(artifacts) < 40:
         #     __temp_number = 40 - len(artifacts)     #This might work, but we won't know until we figure out how to delete the gems upon catching them.
-        #     create_artifacts(__temp_number)
+        create_artifacts(1)
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
-        
+        banner.set_text(f"Score: {self._score}") 
+
         for artifact in artifacts:
+            artifact.move_next(max_x, max_y, is_gem_or_rock=True)
             if robot.get_position().equals(artifact.get_position()):
-                message = artifact.get_message()
-                banner.set_text(message) 
-            # elif artifact.get_position().get_y() > max_y:
-            #     del artifacts[artifact]     #This did not work... hmmm, how to remove the gems and rocks?
-            else:
-                artifact.move_next(max_x, max_y, is_gem_or_rock=True)
+                print(artifact)
+                del artifact
+                self._score += 1
+                # elif cast.get_actors("artifacts") != "*":
+                #     self._score -= 1
+            elif artifact.get_position().get_y() > max_y:
+                del artifacts[artifact]     #This did not work... hmmm, how to remove the gems and rocks?
+                
                 
         
     def _do_outputs(self, cast):
