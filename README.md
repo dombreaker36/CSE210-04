@@ -22,3 +22,7 @@ New plan:
 __main__.py will be used to set up all of the window and parameters, director.py will then take those parameters and tell all of the actors what to do.
 
 Actors will have gems, rocks, and a player. gems rocks and player will have point and color.
+
+I think according to our original diagram, director will tell Color and Point what to do too (as a parent class), but those will ultimately come from main where all of the parameters are editable. 
+
+Will I need to import all of the classes into main?

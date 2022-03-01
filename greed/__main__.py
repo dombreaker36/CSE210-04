@@ -1,3 +1,6 @@
+import os
+import random
+
 from game_files.director import Director
 
 def __main__():
