@@ -15,3 +15,10 @@ Gunnar - Make them fall (Probably fix the spawning and when they fall off the sc
 Alvaro - Add or subtract points (display the points)
 
 Martin - Make them disappear when touched
+
+
+New plan:
+
+__main__.py will be used to set up all of the window and parameters, director.py will then take those parameters and tell all of the actors what to do.
+
+Actors will have gems, rocks, and a player. gems rocks and player will have point and color.
