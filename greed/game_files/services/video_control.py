@@ -5,8 +5,8 @@ class VideoServices:
     """Outputs the game state to the screen.
     
     """
-    def __init__(self):
-        self._caption = caption
+    def __init__(self, title = "Game", width = 900, height = 600, cell_size = 15, frame_rate = 18):
+        self._title = title
         self._width = width
         self._height = height
         self._cell_size = cell_size
@@ -25,7 +25,7 @@ class VideoServices:
     
     def draw_actor(self, actor):
         """draws actor to screen"""
-        symbol = actor.get_text()
-        
+        symbol = actor.get_symbol()
+    
 
 

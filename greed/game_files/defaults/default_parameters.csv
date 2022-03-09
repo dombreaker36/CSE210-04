@@ -1,0 +1,11 @@
+(dict) parameter name, value
+
+null, Video Services
+game_title, "Catch the Shiny to win!"
+width_of_screen, 900
+height_of_screen, 600
+size_of_cell, 15
+frame_rate, 12
+debug, not being used
+
+
